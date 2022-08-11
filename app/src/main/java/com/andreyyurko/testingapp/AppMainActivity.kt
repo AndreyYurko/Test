@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import com.andreyyurko.testingapp.core.MagicHandler
+import com.andreyyurko.testingapp.core.NetworkHandler
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,9 @@ class AppMainActivity : AppCompatActivity(R.layout.activity_main) {
 
     @Inject
     lateinit var magicHandler: MagicHandler
+
+    @Inject
+    lateinit var networkHandler: NetworkHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/songNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:text="Song name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="4dp"
+
+        />
+
+    <TextView
+        android:id="@+id/authorNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/songNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Author name"
+        android:layout_margin="4dp"/>
+
+    <TextView
+        android:id="@+id/LyricsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:text="Lyrics"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
