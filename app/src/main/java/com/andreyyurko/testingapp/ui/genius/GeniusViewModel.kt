@@ -42,7 +42,6 @@ class GeniusViewModel @Inject constructor(
 
             networkHandler.search(item).collect() {
                 songs = it
-                Log.d(LOG_TAG, songs.size.toString())
                 _loadSongsActionState.emit(LoadSongsActionState.Data(songs))
             }
 

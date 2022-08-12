@@ -28,12 +28,11 @@
         android:layout_margin="4dp"/>
 
     <TextView
-        android:id="@+id/LyricsTextView"
+        android:id="@+id/lyricsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toBottomOf="@id/songNameTextView"
         android:text="Lyrics"
         android:layout_margin="4dp"
         android:clickable="true"

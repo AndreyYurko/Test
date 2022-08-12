@@ -8,6 +8,15 @@
         android:id="@+id/GeniusFragment"
         android:name="com.andreyyurko.testingapp.ui.genius.GeniusFragment"
         android:label="GeniusFragment">
+        <action
+            android:id="@+id/action_GeniusFragment_to_LyricsFragment"
+            app:destination="@id/LyricsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LyricsFragment"
+        android:name="com.andreyyurko.testingapp.ui.genius.LyricsFragment"
+        android:label="LyricsFragment">
     </fragment>
 
 </navigation>

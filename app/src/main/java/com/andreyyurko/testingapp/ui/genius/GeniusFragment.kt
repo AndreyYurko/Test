@@ -3,16 +3,23 @@ package com.andreyyurko.testingapp.ui.genius
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.andreyyurko.testingapp.R
+import com.andreyyurko.testingapp.data.Song
 import com.andreyyurko.testingapp.databinding.FragmentGeniusBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,6 +32,8 @@ class GeniusFragment : Fragment(R.layout.fragment_genius) {
     }
 
     private val viewBinding by viewBinding(FragmentGeniusBinding::bind)
+
+    private var songsList = emptyList<Song>()
 
     private lateinit var viewModel: GeniusViewModel
 
@@ -60,9 +69,9 @@ class GeniusFragment : Fragment(R.layout.fragment_genius) {
             }
             is GeniusViewModel.LoadSongsActionState.Data -> {
                 viewBinding.songsRecyclerView.isVisible = true
+                songsList = viewState.songsList
                 (viewBinding.songsRecyclerView.adapter as SongListAdapter).apply {
                     songsList = viewState.songsList
-                    Log.d(LOG_TAG, songsList.size.toString())
                     notifyDataSetChanged()
                 }
                 viewBinding.progressBar.isVisible = false
@@ -77,4 +86,5 @@ class GeniusFragment : Fragment(R.layout.fragment_genius) {
         recyclerView.adapter = adapter
         return adapter
     }
+
 }
