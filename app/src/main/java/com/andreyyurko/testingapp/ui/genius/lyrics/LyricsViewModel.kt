@@ -1,51 +1,44 @@
-package com.andreyyurko.testingapp.ui.genius
+package com.andreyyurko.testingapp.ui.genius.lyrics
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andreyyurko.testingapp.core.NetworkHandler
-import com.andreyyurko.testingapp.data.Song
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GeniusViewModel @Inject constructor(
+class LyricsViewModel @Inject constructor(
     private val networkHandler: NetworkHandler
 ) : ViewModel() {
-
     companion object {
         val LOG_TAG = "GeniusViewModel"
     }
 
     sealed class LoadSongsActionState {
         object Loading : LoadSongsActionState()
-        data class Data(val songsList: List<Song>) : LoadSongsActionState()
+        data class Data(val lyrics: String) : LoadSongsActionState()
     }
 
     private val _loadSongsActionState = MutableStateFlow<LoadSongsActionState>(
-        LoadSongsActionState.Data(
-            emptyList()
-        )
+        LoadSongsActionState.Loading
     )
 
     val loadSongsActionState : Flow<LoadSongsActionState> get() = _loadSongsActionState.asStateFlow()
 
-    fun search(item: String) {
+    fun getLyrics(authorName: String, songName: String) {
         viewModelScope.launch {
             _loadSongsActionState.emit(LoadSongsActionState.Loading)
-            lateinit var songs: MutableList<Song>
+            lateinit var lyrics: String
 
-            networkHandler.search(item).collect() {
-                songs = it
-                _loadSongsActionState.emit(LoadSongsActionState.Data(songs))
+            networkHandler.getLyrics(authorName, songName).collect() {
+                lyrics = it
+                _loadSongsActionState.emit(LoadSongsActionState.Data(it))
             }
 
         }
     }
-
 }

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/GeniusFragment"
-        android:name="com.andreyyurko.testingapp.ui.genius.GeniusFragment"
+        android:name="com.andreyyurko.testingapp.ui.genius.songslist.GeniusFragment"
         android:label="GeniusFragment">
         <action
             android:id="@+id/action_GeniusFragment_to_LyricsFragment"
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/LyricsFragment"
-        android:name="com.andreyyurko.testingapp.ui.genius.LyricsFragment"
+        android:name="com.andreyyurko.testingapp.ui.genius.lyrics.LyricsFragment"
         android:label="LyricsFragment">
     </fragment>
 

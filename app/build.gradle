@@ -114,6 +114,8 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
-    //okhttp await()
+    // okhttp await()
     implementation("ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0")
+    // HTML parser
+    implementation("org.jsoup:jsoup:1.14.3")
 }

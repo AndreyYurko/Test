@@ -1,4 +1,4 @@
-package com.andreyyurko.testingapp.ui.genius
+package com.andreyyurko.testingapp.ui.genius.songslist
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,7 +29,8 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.songNameTextView.text = songsList[position].Name
         holder.authorNameTextView.text = songsList[position].Author
-        holder.lyrics = songsList[position].Lyrics
+        holder.authorName = songsList[position].Author
+        holder.songName = songsList[position].Name
     }
 
     override fun getItemCount(): Int {
@@ -40,7 +41,8 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
         val songNameTextView = itemView.findViewById<TextView>(R.id.songNameTextView)
         val authorNameTextView = itemView.findViewById<TextView>(R.id.authorNameTextView)
         val lyricsTextView = itemView.findViewById<TextView>(R.id.lyricsTextView)
-        var lyrics : String = ""
+        var authorName : String = ""
+        var songName : String = ""
 
         init {
             lyricsTextView?.setOnClickListener {
@@ -48,7 +50,8 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
                 it.findNavController().navigate(R.id.action_GeniusFragment_to_LyricsFragment)
                 it.findFragment<GeniusFragment>().setFragmentResult(
                         "LyricsOfSong", bundleOf(
-                        "LyricsOfSongBundleKey" to lyrics
+                        "AuthorOfSongBundleKey" to authorName,
+                        "SongOfSongBundleKey" to songName
                     )
                 )
             }
