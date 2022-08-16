@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/fade_out.xml" value="0.169" />
         <entry key="app/src/main/res/drawable/ic_arrow_back_24dp.xml" value="0.182" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1734375" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/fade_out.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_email_confirmation.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/fragment_genius.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout/fragment_lyrics.xml" value="0.17239583333333333" />

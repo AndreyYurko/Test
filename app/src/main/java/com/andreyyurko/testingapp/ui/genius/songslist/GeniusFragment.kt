@@ -1,6 +1,8 @@
 package com.andreyyurko.testingapp.ui.genius.songslist
 
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.TransitionInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -32,6 +34,8 @@ class GeniusFragment : Fragment(R.layout.fragment_genius) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        exitTransition = TransitionInflater.from(activity).inflateTransition(android.R.transition.fade)
+
         viewModel = ViewModelProvider(this)[GeniusViewModel::class.java]
     }
 
@@ -39,6 +43,8 @@ class GeniusFragment : Fragment(R.layout.fragment_genius) {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+
+        viewBinding.backgroundLottieView.speed = 0.2F
 
         viewBinding.sendButton.setOnClickListener {
             val text = viewBinding.queryEditText.text.toString()

@@ -5,17 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/backgroundLottieView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_fileName="genius_background_2.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:scaleType="centerCrop"/>
+
+
     <EditText
         android:id="@+id/queryEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="28dp"
         android:layout_margin="4dp"
+        android:backgroundTint="@color/genius_text_colour"
+        android:textColor="@color/genius_text_colour"
+        android:textColorHighlight="@color/genius_text_colour"
+        android:textColorHint="@color/genius_text_colour"
+        android:textCursorDrawable="@null"
+        android:textSize="28dp"
+        app:layout_constraintEnd_toStartOf="@id/sendButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/sendButton"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:layout_margin="4dp"
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
@@ -24,7 +43,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/queryEditText"
         android:textSize="28sp"
-        android:text="Send"/>
+        android:textColor="@color/genius_text_colour"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="@id/queryEditText"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/songsRecyclerView"

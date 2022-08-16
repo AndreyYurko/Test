@@ -24,7 +24,6 @@ class NetworkHandler @Inject constructor()
     }
 
     private val host1 = "genius.p.rapidapi.com"
-    private val host2 = "theaudiodb.p.rapidapi.com"
 
     private val client = OkHttpClient()
 
@@ -69,10 +68,14 @@ class NetworkHandler @Inject constructor()
         val url = "https://azlyrics.com/lyrics/" +
                 "${encode(authorName
                     .replace(" ", "")
-                    .lowercase()
-                    .replace("the", ""), "utf-8")}/" +
+                    .replace(Regex("\\(.+\\)"), "")
+                    .replace(Regex("[^A-Za-z0-9 ]"), "")
+                    .replace("the", "")
+                    .lowercase(), "utf-8")}/" +
                 "${encode(songName
                     .replace(" ", "")
+                    .replace(Regex("\\(.+\\)"), "")
+                    .replace(Regex("[^A-Za-z0-9 ]"), "")
                     .lowercase(), "utf-8")}.html"
 
         Log.d(LOG_TAG, url)
@@ -115,9 +118,11 @@ class NetworkHandler @Inject constructor()
         val regexEnd = """<!-- MxM banner -->""".toRegex()
         val matchEnd = regexEnd.find(body)
         Log.d(LOG_TAG, body)
-        val lyrics = body.substring(matchStart!!.range.last + 2, matchEnd!!.range.last - 2)
+        val lyrics = body.substring(matchStart!!.range.last + 2, matchEnd!!.range.first - 2)
             .replace("<br>", "")
             .replace("</div>", "")
+            .replace("<i>[", "")
+            .replace("]</i>", "")
         return lyrics
     }
 

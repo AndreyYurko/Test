@@ -1,6 +1,9 @@
 package com.andreyyurko.testingapp.ui.genius.lyrics
 
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.TransitionInflater
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -12,11 +15,16 @@ import androidx.navigation.fragment.findNavController
 import com.andreyyurko.testingapp.R
 import com.andreyyurko.testingapp.databinding.FragmentLyricsBinding
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.andreyyurko.testingapp.ui.genius.songslist.SongListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
+
+    companion object {
+        val LOG_TAG = "LyricsFragment"
+    }
 
     private val viewBinding by viewBinding(FragmentLyricsBinding::bind)
 
@@ -27,6 +35,14 @@ class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = ChangeBounds().apply {
+            duration = 750
+        }
+        sharedElementReturnTransition= ChangeBounds().apply {
+            duration = 750
+        }
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+
         viewModel = ViewModelProvider(this)[LyricsViewModel::class.java]
     }
 
@@ -36,6 +52,7 @@ class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
             authorName = bundle.get("AuthorOfSongBundleKey").toString()
             songName = bundle.get("SongOfSongBundleKey").toString()
             viewModel.getLyrics(authorName, songName)
+            viewBinding.lyricsTitleTextView.transitionName = authorName + songName + "TextView"
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

@@ -10,7 +10,7 @@
         android:label="GeniusFragment">
         <action
             android:id="@+id/action_GeniusFragment_to_LyricsFragment"
-            app:destination="@id/LyricsFragment" />
+            app:destination="@id/LyricsFragment"/>
     </fragment>
 
     <fragment

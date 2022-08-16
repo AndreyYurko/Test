@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.findFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.andreyyurko.testingapp.R
 import com.andreyyurko.testingapp.data.Song
@@ -31,6 +33,26 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
         holder.authorNameTextView.text = songsList[position].Author
         holder.authorName = songsList[position].Author
         holder.songName = songsList[position].Name
+
+
+        //Log.d(LOG_TAG, holder.songNameTextView.currentTextColor.toString())
+        //Log.d(LOG_TAG, R.color.white.toString())
+
+        holder.lyricsTextView.setOnClickListener {
+            Log.d(LOG_TAG, "Click!")
+            it.transitionName = holder.authorName + holder.songName + "TextView"
+            val extras = FragmentNavigatorExtras(
+                holder.lyricsTextView to holder.authorName + holder.songName + "TextView"
+            )
+            it.findNavController().navigate(R.id.action_GeniusFragment_to_LyricsFragment, null, null, extras)
+            it.findFragment<GeniusFragment>().setFragmentResult(
+                "LyricsOfSong", bundleOf(
+                    "AuthorOfSongBundleKey" to holder.authorName,
+                    "SongOfSongBundleKey" to holder.songName
+                )
+            )
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,16 +67,9 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
         var songName : String = ""
 
         init {
-            lyricsTextView?.setOnClickListener {
-                Log.d(LOG_TAG, "Click!")
-                it.findNavController().navigate(R.id.action_GeniusFragment_to_LyricsFragment)
-                it.findFragment<GeniusFragment>().setFragmentResult(
-                        "LyricsOfSong", bundleOf(
-                        "AuthorOfSongBundleKey" to authorName,
-                        "SongOfSongBundleKey" to songName
-                    )
-                )
-            }
+            songNameTextView.setTextColor(ContextCompat.getColor(itemView.context, R.color.genius_text_colour))
+            authorNameTextView.setTextColor(ContextCompat.getColor(itemView.context, R.color.genius_text_colour))
+            lyricsTextView.setTextColor(ContextCompat.getColor(itemView.context, R.color.genius_text_colour))
         }
     }
 

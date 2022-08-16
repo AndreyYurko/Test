@@ -118,4 +118,6 @@ dependencies {
     implementation("ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0")
     // HTML parser
     implementation("org.jsoup:jsoup:1.14.3")
+    def lottieVersion = '5.2.0'
+    implementation ("com.airbnb.android:lottie:$lottieVersion")
 }
