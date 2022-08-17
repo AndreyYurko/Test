@@ -2,14 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/guest_nav_graph"
-    app:startDestination="@id/genius_nav_graph">
+    app:startDestination="@id/SignInFragment">
 
     <fragment
         android:id="@+id/SignInFragment"
         android:name="com.andreyyurko.testingapp.ui.signin.SignInFragment"
         android:label="SignInFragment">
     </fragment>
-
-    <include app:graph="@navigation/genius_nav_graph" />
 
 </navigation>

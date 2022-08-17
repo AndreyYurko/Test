@@ -25,19 +25,17 @@ class AppMainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initMagic()
-        magicHandler.startRelayer(this)
         subscribeToAuthorizationStatus()
     }
 
     private fun initMagic() {
-        val magic = (applicationContext as App).magic
-        magicHandler.init(magic)
+        magicHandler.init()
     }
 
     private fun subscribeToAuthorizationStatus() {
-
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                magicHandler.checkStatus()
                 magicHandler.authStateFlow().collect { response ->
                     when (response) {
                         MagicHandler.AuthState.Logged -> {
@@ -47,7 +45,6 @@ class AppMainActivity : AppCompatActivity(R.layout.activity_main) {
                             showSuitableNavigationFlow(false)
                         }
                     }
-
                 }
             }
         }
@@ -69,10 +66,5 @@ class AppMainActivity : AppCompatActivity(R.layout.activity_main) {
                 navController.navigate(R.id.action_guestNavGraph)
             }
         }
-    }
-
-    override fun onDestroy() {
-        magicHandler.destroyRelayer()
-        super.onDestroy()
     }
 }

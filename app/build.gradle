@@ -98,8 +98,7 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
     // MagicLink
-    implementation 'link.magic:magic-android:2.1.0'
-    implementation 'org.web3j:core:4.8.8-android'
+    implementation 'com.mojoauth.android:mojoauth-sdk:1.2.0'
 
     // HTTP client.
     def retrofitVersion = "2.9.0"

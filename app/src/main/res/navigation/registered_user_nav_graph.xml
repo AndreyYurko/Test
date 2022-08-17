@@ -8,6 +8,11 @@
         android:id="@+id/MainFragment"
         android:name="com.andreyyurko.testingapp.ui.main.MainFragment"
         android:label="MainFragment">
+        <action
+            android:id="@+id/action_MainFragment_to_genius_nav_graph"
+            app:destination="@id/genius_nav_graph" />
     </fragment>
+
+    <include app:graph="@navigation/genius_nav_graph" />
 
 </navigation>

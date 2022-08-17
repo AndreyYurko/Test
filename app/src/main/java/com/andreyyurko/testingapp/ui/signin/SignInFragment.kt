@@ -25,8 +25,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         viewBinding.sendButton.setOnClickListener {
             val email = viewBinding.emailEditText.text ?: ""
-            magicHandler.auth(email.toString())
-
+            magicHandler.loginByMagicLink(email.toString())
         }
     }
 
